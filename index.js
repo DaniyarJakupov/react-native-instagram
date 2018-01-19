@@ -1,4 +1,3 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import Nav from './src/Nav';
 
-AppRegistry.registerComponent('InstagramApp', () => App);
+const App = new Nav();
