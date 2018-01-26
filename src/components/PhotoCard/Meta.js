@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Meta({ caption, username = 'EQuimper' }) {
+export default function Meta({ caption, username = 'User' }) {
   return (
     <View style={styles.root}>
       <View style={styles.wrapper}>
