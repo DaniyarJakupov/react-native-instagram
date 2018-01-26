@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import Touchable from '@appandflow/touchable';
 import { human, iOSColors } from 'react-native-typography';
 
@@ -12,29 +12,32 @@ const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970
 
 class PhotoCard extends Component {
   state = {};
+
   render() {
+    const { imageUrl, caption } = this.props;
+
     return (
-      <ScrollView>
-        <View style={styles.wrapper}>
-          <Header />
+      <View style={styles.wrapper}>
+        <Header />
 
-          <Image style={{ flex: 1 }} source={{ uri }} />
+        <Image style={{ flex: 1 }} source={{ uri: imageUrl }} />
 
-          <ActionPanel />
+        <ActionPanel />
 
-          <Meta caption="GODS I WAS STRONG THEN!" />
+        <Meta caption={caption} />
 
-          <View style={styles.commentsWrapper}>
-            <Touchable feedback="opacity">
-              <Text style={styles.commentViewAll}>View all 13 comments </Text>
-            </Touchable>
-            <Comments />
-          </View>
-          <View style={styles.timeAgoWrapper}>
-            <Text style={styles.timeAgo}>6 HOURS AGO </Text>
-          </View>
+        <View style={styles.commentsWrapper}>
+          <Touchable feedback="opacity">
+            <Text style={styles.commentViewAll}>View all 13 comments </Text>
+          </Touchable>
+
+          <Comments />
         </View>
-      </ScrollView>
+
+        <View style={styles.timeAgoWrapper}>
+          <Text style={styles.timeAgo}>6 HOURS AGO </Text>
+        </View>
+      </View>
     );
   }
 }
