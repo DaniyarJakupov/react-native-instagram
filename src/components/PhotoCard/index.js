@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import Touchable from '@appandflow/touchable';
+import { human, iOSColors } from 'react-native-typography';
 
 import Header from './Header';
 import ActionPanel from './ActionPanel';
 import Meta from './Meta';
+import Comments from '../Comments';
 
-const uri =
-  'https://freestocks.org/fs/wp-content/uploads/2018/01/holly_berries_4-1024x683.jpg';
+const uri = 'https://freestocks.org/fs/wp-content/uploads/2018/01/holly_berries_4-1024x683.jpg';
 
 class PhotoCard extends Component {
   state = {};
@@ -15,12 +17,25 @@ class PhotoCard extends Component {
       <ScrollView>
         <View style={styles.wrapper}>
           <Header />
-
-          <Image style={{ flex: 1 }} source={{ uri }} />
-
+          <Image
+            style={{
+              flex: 1
+            }}
+            source={{
+              uri
+            }}
+          />
           <ActionPanel />
-
-          <Meta caption="text" />
+          <Meta caption="GODS I WAS STRONG THEN!" />
+          <View style={styles.commentsWrapper}>
+            <Touchable feedback="opacity">
+              <Text style={styles.commentViewAll}>View all 13 comments </Text>
+            </Touchable>
+            <Comments />
+          </View>
+          <View style={styles.timeAgoWrapper}>
+            <Text style={styles.timeAgo}>6 HOURS AGO </Text>
+          </View>
         </View>
       </ScrollView>
     );
@@ -29,8 +44,29 @@ class PhotoCard extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: 500,
+    minHeight: 700,
     paddingBottom: 10
+  },
+  img: {
+    flex: 1
+  },
+  commentsWrapper: {
+    height: 50,
+    paddingHorizontal: 16
+  },
+  commentViewAll: {
+    ...human.calloutObject,
+    color: iOSColors.midGray
+  },
+  timeAgoWrapper: {
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingHorizontal: 16
+  },
+  timeAgo: {
+    ...human.footnoteObject,
+    color: iOSColors.midGray
   }
 });
 

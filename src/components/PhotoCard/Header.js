@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Touchable from '@appandflow/touchable';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { human } from 'react-native-typography';
 
-const uri =
-  'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
+const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
 const username = 'Bobby B';
 const loc = 'Kingslanding, Westeros';
 
@@ -24,7 +23,7 @@ const Header = () => {
 
       <View style={styles.rightSide}>
         <Touchable feedback="opacity">
-          <MaterialCommunityIcons name="dots-horizontal" size={25} />
+          <Entypo name="dots-three-vertical" size={17} color="gray" />
         </Touchable>
       </View>
     </View>
