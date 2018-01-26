@@ -8,7 +8,7 @@ import ActionPanel from './ActionPanel';
 import Meta from './Meta';
 import Comments from '../Comments';
 
-const uri = 'https://freestocks.org/fs/wp-content/uploads/2018/01/holly_berries_4-1024x683.jpg';
+const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
 
 class PhotoCard extends Component {
   state = {};
@@ -17,6 +17,7 @@ class PhotoCard extends Component {
       <ScrollView>
         <View style={styles.wrapper}>
           <Header />
+
           <Image
             style={{
               flex: 1
@@ -25,8 +26,11 @@ class PhotoCard extends Component {
               uri
             }}
           />
+
           <ActionPanel />
+
           <Meta caption="GODS I WAS STRONG THEN!" />
+
           <View style={styles.commentsWrapper}>
             <Touchable feedback="opacity">
               <Text style={styles.commentViewAll}>View all 13 comments </Text>
