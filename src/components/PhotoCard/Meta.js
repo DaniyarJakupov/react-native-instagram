@@ -2,20 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { human, systemWeights } from 'react-native-typography';
 
-const styles = StyleSheet.create({
-  root: {
-    paddingHorizontal: 16,
-    minHeight: 50
-  },
-  wrapper: {
-    flex: 1
-  },
-  text: {
-    ...human.footnoteObject,
-    ...systemWeights.light
-  }
-});
-
 export default function Meta({ caption, username = 'Bobby B' }) {
   return (
     <View style={styles.root}>
@@ -33,3 +19,17 @@ export default function Meta({ caption, username = 'Bobby B' }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    paddingHorizontal: 16,
+    minHeight: 50
+  },
+  wrapper: {
+    flex: 1
+  },
+  text: {
+    ...human.footnoteObject,
+    ...systemWeights.light
+  }
+});

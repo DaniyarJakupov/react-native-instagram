@@ -7,6 +7,24 @@ import { makeHitSlop, makeCircle } from '../utils';
 
 const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
 
+class Comments extends Component {
+  state = {};
+  render() {
+    return (
+      <View style={styles.root}>
+        <View style={styles.avatarWrapper}>
+          <Image source={{ uri }} style={styles.avatar} />
+        </View>
+        <Touchable feedback="opacity" hitSlop={makeHitSlop(20)} style={styles.inputWrapper}>
+          <View style={styles.input}>
+            <Text style={styles.inputText}>Add a comment...</Text>
+          </View>
+        </Touchable>
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   root: {
     minHeight: 50,
@@ -39,23 +57,5 @@ const styles = StyleSheet.create({
     borderRadius: 20
   }
 });
-
-class Comments extends Component {
-  state = {};
-  render() {
-    return (
-      <View style={styles.root}>
-        <View style={styles.avatarWrapper}>
-          <Image source={{ uri }} style={styles.avatar} />
-        </View>
-        <Touchable feedback="opacity" hitSlop={makeHitSlop(20)} style={styles.inputWrapper}>
-          <View style={styles.input}>
-            <Text style={styles.inputText}>Add a comment...</Text>
-          </View>
-        </Touchable>
-      </View>
-    );
-  }
-}
 
 export default Comments;
