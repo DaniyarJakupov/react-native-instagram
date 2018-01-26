@@ -4,23 +4,24 @@ import Touchable from '@appandflow/touchable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { human } from 'react-native-typography';
 
+const uri =
+  'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
+const username = 'Bobby B';
+const loc = 'Kingslanding, Westeros';
+
 const Header = () => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.leftSide}>
         <View style={styles.avatar}>
-          <Image
-            source={{
-              uri: 'https://i.imgur.com/zpI6gTZl.jpg'
-            }}
-            style={styles.avatarImg}
-          />
+          <Image source={{ uri }} style={styles.avatarImg} />
         </View>
         <View style={styles.user}>
-          <Text style={human.subheadObject}> Bobby B </Text>
-          <Text style={human.footnoteObject}> Kingslanding, Westeros </Text>
+          <Text style={human.subheadObject}> {username} </Text>
+          <Text style={human.footnoteObject}> {loc} </Text>
         </View>
       </View>
+
       <View style={styles.rightSide}>
         <Touchable feedback="opacity">
           <MaterialCommunityIcons name="dots-horizontal" size={25} />
