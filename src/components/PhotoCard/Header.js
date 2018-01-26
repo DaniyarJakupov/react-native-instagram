@@ -34,7 +34,7 @@ const Header = () => {
 const styles = StyleSheet.create({
   wrapper: {
     height: 60,
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     backgroundColor: 'white'
   },
