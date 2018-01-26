@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@appandflow/touchable@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@appandflow/touchable/-/touchable-1.2.2.tgz#134b6353e5ec98c5d6937116aa79dfede20166e1"
+
 "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0-beta.38"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-beta.38.tgz#c0af5930617e55e050336838e3a3670983b0b2b2"
@@ -3513,6 +3517,10 @@ react-native-navigation@1.1.335:
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.335.tgz#672099808b974bee2a8ac2ef5f04068548fa2627"
   dependencies:
     lodash "4.x.x"
+
+react-native-typography@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-typography/-/react-native-typography-1.2.1.tgz#380c71a71e4a4774bd2ca81971aabc6ecf3cb195"
 
 react-native-vector-icons@^4.5.0:
   version "4.5.0"
