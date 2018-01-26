@@ -7,7 +7,7 @@ class FeedScreen extends Component {
   state = {};
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <PhotoCard />
       </View>
     );
