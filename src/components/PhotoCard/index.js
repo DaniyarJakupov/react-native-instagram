@@ -18,14 +18,7 @@ class PhotoCard extends Component {
         <View style={styles.wrapper}>
           <Header />
 
-          <Image
-            style={{
-              flex: 1
-            }}
-            source={{
-              uri
-            }}
-          />
+          <Image style={{ flex: 1 }} source={{ uri }} />
 
           <ActionPanel />
 
