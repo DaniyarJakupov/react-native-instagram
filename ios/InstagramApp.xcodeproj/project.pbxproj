@@ -50,6 +50,7 @@
 		EBF3A732D91A48F78A5828B7 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF8C210F64C4B5B811DF3CC /* libRNVectorIcons.a */; };
 		EE4DCC85E01B44C39203F561 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75F3AC84D4E647B18C38FEC0 /* Octicons.ttf */; };
 		E06499DD06014092879B8BA2 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874E649099684053BFE94E2C /* libBVLinearGradient.a */; };
+		8193D600B1534BBABF4A368E /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D19B14A0C364A3C8BF53E0D /* Lobster-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +386,7 @@
 		DD5ED316201278C6003F03FE /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		604B9E9A4DB54387895E618E /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		874E649099684053BFE94E2C /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		4D19B14A0C364A3C8BF53E0D /* Lobster-Regular.ttf */ = {isa = PBXFileReference; name = "Lobster-Regular.ttf"; path = "../assets/fonts/Lobster-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -691,6 +693,7 @@
 				75F3AC84D4E647B18C38FEC0 /* Octicons.ttf */,
 				20404DAFD17941A39D448C0C /* SimpleLineIcons.ttf */,
 				CF50F96CD208413C912EF276 /* Zocial.ttf */,
+				4D19B14A0C364A3C8BF53E0D /* Lobster-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1174,6 +1177,7 @@
 				EE4DCC85E01B44C39203F561 /* Octicons.ttf in Resources */,
 				877CD5230E0D4C2EA4148E2F /* SimpleLineIcons.ttf in Resources */,
 				4612063B02E74746B2E02FF3 /* Zocial.ttf in Resources */,
+				8193D600B1534BBABF4A368E /* Lobster-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
