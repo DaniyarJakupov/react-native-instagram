@@ -2,8 +2,8 @@ import { Navigation } from 'react-native-navigation';
 import { iOSColors } from 'react-native-typography';
 
 import { registerScreens } from './screens';
-import { iconsMap } from './utils/icons';
-import { navBarStyle } from './utils/navBarStyle';
+import { iconsMap } from './utils/themes';
+import { navBarStyle } from './utils';
 
 import appInit from './utils/appInit';
 
