@@ -5,6 +5,7 @@ package com.instagramapp;
 import com.reactnativenavigation.NavigationApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
+import com.BV.LinearGradient.LinearGradientPackage; 
 
 // import com.facebook.react.ReactNativeHost;
 // import com.facebook.react.shell.MainReactPackage;
@@ -21,7 +22,8 @@ public class MainApplication extends NavigationApplication  {
 
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-        new VectorIconsPackage()
+        new VectorIconsPackage(),
+        new LinearGradientPackage()
       );
     }
 
