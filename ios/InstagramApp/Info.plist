@@ -66,5 +66,25 @@
 		<string>Zocial.ttf</string>
 		<string>Lobster-Regular.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb357040171431559</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>357040171431559</string>
+	<key>FacebookDisplayName</key>
+	<string>react-native-inst</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>

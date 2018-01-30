@@ -7,7 +7,9 @@
     "test": "jest"
   },
   "rnpm": {
-    "assets": ["./assets/fonts"]
+    "assets": [
+      "./assets/fonts"
+    ]
   },
   "dependencies": {
     "@appandflow/touchable": "^1.2.2",
@@ -20,6 +22,7 @@
     "react": "16.0.0",
     "react-apollo": "^2.0.4",
     "react-native": "0.50.4",
+    "react-native-fbsdk": "^0.7.0",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-navigation": "1.1.335",
     "react-native-typography": "^1.2.1",
