@@ -1,14 +1,74 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
 import { iOSColors, human, systemWeights } from 'react-native-typography';
-import LinearGradient from 'react-native-linear-gradient';
 import Touchable from '@appandflow/touchable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import { LoginManager } from 'react-native-fbsdk';
 
-// import { fonts } from '../../utils';
+class LoginScreen extends Component {
+  state = {};
 
-const COLORS_GRADIENTS = ['#74398D', '#56499E'];
+  _onLoginFbPress = async () => {
+    // const res = await LoginManager.logInWithReadPermissions(['public_profile']);
+  };
+
+  render() {
+    return (
+      <View style={styles.root}>
+        <StatusBar barStyle="light-content" />
+        <View style={styles.header}>
+          <Text style={styles.appName}>Instagram</Text>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.section}>
+            <View style={styles.inputWrapper}>
+              <TextInput
+                underlineColorAndroid="transparent"
+                style={styles.input}
+                placeholder="Email"
+              />
+            </View>
+            <View style={styles.inputWrapper}>
+              <TextInput
+                underlineColorAndroid="transparent"
+                style={styles.input}
+                placeholder="Password"
+              />
+            </View>
+            <Touchable style={styles.loginBtn} feedback="opacity">
+              <Text style={styles.loginBtnText}>Login</Text>
+            </Touchable>
+            <View style={styles.forgotWrapper}>
+              <Text style={styles.callout}>Forgot your login details? </Text>
+              <Touchable feedback="opacity">
+                <Text style={styles.btnText}>Get help signing in.</Text>
+              </Touchable>
+            </View>
+          </View>
+          <View style={styles.orWrapper}>
+            <View style={styles.orDivider} />
+            <View style={styles.orTextWrapper}>
+              <Text style={styles.orText}>OR</Text>
+            </View>
+            <View style={styles.orDivider} />
+          </View>
+          <View style={[styles.section, styles.sectionBottom]}>
+            <Touchable onPress={this._onLoginFbPress} style={styles.fbLoginBtn} feedback="opacity">
+              <MaterialCommunityIcons size={30} name="facebook-box" color="#318DEE" />
+              <Text style={styles.fbLoginBtnText}>Continue with Facebook</Text>
+            </Touchable>
+          </View>
+          <View style={styles.noAccountWrapper}>
+            <Text style={styles.callout}>Don't have an account? </Text>
+            <Touchable feedback="opacity">
+              <Text style={styles.btnText}>Sign up.</Text>
+            </Touchable>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   root: {
@@ -20,12 +80,12 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#56499E'
   },
   appName: {
     color: iOSColors.white,
     fontSize: 50
-    // fontFamily: fonts.lobster
   },
   content: {
     flex: 1,
@@ -124,75 +184,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
-
-class LoginScreen extends Component {
-  state = {};
-
-  _onLoginFbPress = async () => {
-    // const res = await LoginManager.logInWithReadPermissions(['public_profile']);
-  };
-
-  render() {
-    return (
-      <View style={styles.root}>
-        <StatusBar barStyle="light-content" />
-        <LinearGradient
-          start={{ x: 0.0, y: 0.0 }}
-          end={{ x: 1.0, y: 1.0 }}
-          colors={COLORS_GRADIENTS}
-          style={styles.header}
-        >
-          <Text style={styles.appName}>Instagram</Text>
-        </LinearGradient>
-        <View style={styles.content}>
-          <View style={styles.section}>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                placeholder="Email"
-              />
-            </View>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                placeholder="Password"
-              />
-            </View>
-            <Touchable style={styles.loginBtn} feedback="opacity">
-              <Text style={styles.loginBtnText}>Login</Text>
-            </Touchable>
-            <View style={styles.forgotWrapper}>
-              <Text style={styles.callout}>Forgot your login details? </Text>
-              <Touchable feedback="opacity">
-                <Text style={styles.btnText}>Get help signing in.</Text>
-              </Touchable>
-            </View>
-          </View>
-          <View style={styles.orWrapper}>
-            <View style={styles.orDivider} />
-            <View style={styles.orTextWrapper}>
-              <Text style={styles.orText}>OR</Text>
-            </View>
-            <View style={styles.orDivider} />
-          </View>
-          <View style={[styles.section, styles.sectionBottom]}>
-            <Touchable onPress={this._onLoginFbPress} style={styles.fbLoginBtn} feedback="opacity">
-              <MaterialCommunityIcons size={30} name="facebook-box" color="#318DEE" />
-              <Text style={styles.fbLoginBtnText}>Continue with Facebook</Text>
-            </Touchable>
-          </View>
-          <View style={styles.noAccountWrapper}>
-            <Text style={styles.callout}>Don't have an account? </Text>
-            <Touchable feedback="opacity">
-              <Text style={styles.btnText}>Sign up.</Text>
-            </Touchable>
-          </View>
-        </View>
-      </View>
-    );
-  }
-}
 
 export default LoginScreen;
