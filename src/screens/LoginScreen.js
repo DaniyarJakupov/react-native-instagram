@@ -1,70 +1,122 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+  AsyncStorage,
+  ActivityIndicator
+} from 'react-native';
 import { iOSColors, human, systemWeights } from 'react-native-typography';
 import Touchable from '@appandflow/touchable';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import { LoginManager } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
+import { authToken } from '../utils/constants';
+import { startMainApp } from '../Nav';
 
 class LoginScreen extends Component {
-  state = {};
+  state = {
+    loading: false
+  };
 
   _onLoginFbPress = async () => {
-    // const res = await LoginManager.logInWithReadPermissions(['public_profile']);
+    this.setState({ loading: true });
+    const res = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+    if (res.grantedPermissions && !res.isCancelled) {
+      const { accessToken } = await AccessToken.getCurrentAccessToken();
+      if (accessToken) {
+        const serverResponse = await this.props.loginMutation({
+          variables: {
+            provider: 'FACEBOOK',
+            token: accessToken
+          }
+        });
+        const { token } = serverResponse.data.login;
+        try {
+          await AsyncStorage.setItem(authToken, token);
+          this.setState({ loading: false });
+          startMainApp();
+        } catch (error) {
+          throw error;
+        }
+      }
+    }
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={styles.root}>
+          <ActivityIndicator size="large" color="crimson" />
+        </View>
+      );
+    }
     return (
       <View style={styles.root}>
         <StatusBar barStyle="light-content" />
         <View style={styles.header}>
           <Text style={styles.appName}>Instagram</Text>
         </View>
-        <View style={styles.content}>
-          <View style={styles.section}>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                placeholder="Email"
-              />
+
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.content}>
+            <View style={styles.section}>
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                  placeholder="Email"
+                />
+              </View>
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  style={styles.input}
+                  placeholder="Password"
+                />
+              </View>
+              <Touchable style={styles.loginBtn} feedback="opacity">
+                <Text style={styles.loginBtnText}>Login</Text>
+              </Touchable>
+              <View style={styles.forgotWrapper}>
+                <Text style={styles.callout}>Forgot your login details? </Text>
+                <Touchable feedback="opacity">
+                  <Text style={styles.btnText}>Get help signing in.</Text>
+                </Touchable>
+              </View>
             </View>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.input}
-                placeholder="Password"
-              />
+            <View style={styles.orWrapper}>
+              <View style={styles.orDivider} />
+              <View style={styles.orTextWrapper}>
+                <Text style={styles.orText}>OR</Text>
+              </View>
+              <View style={styles.orDivider} />
             </View>
-            <Touchable style={styles.loginBtn} feedback="opacity">
-              <Text style={styles.loginBtnText}>Login</Text>
-            </Touchable>
-            <View style={styles.forgotWrapper}>
-              <Text style={styles.callout}>Forgot your login details? </Text>
+
+            <View style={[styles.section, styles.sectionBottom]}>
+              <Touchable
+                onPress={this._onLoginFbPress}
+                style={styles.fbLoginBtn}
+                feedback="opacity"
+              >
+                <MaterialCommunityIcons size={30} name="facebook-box" color="#318DEE" />
+                <Text style={styles.fbLoginBtnText}>Continue with Facebook</Text>
+              </Touchable>
+            </View>
+            <View style={styles.noAccountWrapper}>
+              <Text style={styles.callout}>Don't have an account? </Text>
               <Touchable feedback="opacity">
-                <Text style={styles.btnText}>Get help signing in.</Text>
+                <Text style={styles.btnText}>Sign up.</Text>
               </Touchable>
             </View>
           </View>
-          <View style={styles.orWrapper}>
-            <View style={styles.orDivider} />
-            <View style={styles.orTextWrapper}>
-              <Text style={styles.orText}>OR</Text>
-            </View>
-            <View style={styles.orDivider} />
-          </View>
-          <View style={[styles.section, styles.sectionBottom]}>
-            <Touchable onPress={this._onLoginFbPress} style={styles.fbLoginBtn} feedback="opacity">
-              <MaterialCommunityIcons size={30} name="facebook-box" color="#318DEE" />
-              <Text style={styles.fbLoginBtnText}>Continue with Facebook</Text>
-            </Touchable>
-          </View>
-          <View style={styles.noAccountWrapper}>
-            <Text style={styles.callout}>Don't have an account? </Text>
-            <Touchable feedback="opacity">
-              <Text style={styles.btnText}>Sign up.</Text>
-            </Touchable>
-          </View>
-        </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -185,4 +237,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+const loginMutation = gql`
+  mutation($provider: Provider, $token: String) {
+    login(provider: $provider, token: $token) {
+      token
+    }
+  }
+`;
+
+export default graphql(loginMutation, { name: 'loginMutation' })(LoginScreen);
