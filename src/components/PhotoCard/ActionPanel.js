@@ -12,7 +12,12 @@ class ActionPanel extends Component {
     return (
       <View style={styles.root}>
         <View style={styles.actionsWrapper}>
-          <Touchable hitSlop={makeHitSlop(5)} feedback="opacity" style={styles.actionBtn}>
+          <Touchable
+            onPress={this.props.onLikePress}
+            hitSlop={makeHitSlop(5)}
+            feedback="opacity"
+            style={styles.actionBtn}
+          >
             <Ionicons name="ios-heart-outline" size={30} />
           </Touchable>
           <Touchable hitSlop={makeHitSlop(5)} feedback="opacity" style={styles.actionBtn}>

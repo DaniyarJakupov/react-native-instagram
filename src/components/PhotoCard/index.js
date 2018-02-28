@@ -2,16 +2,29 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Touchable from '@appandflow/touchable';
 import { human, iOSColors } from 'react-native-typography';
+import { graphql } from 'react-apollo';
 
 import Header from './Header';
 import ActionPanel from './ActionPanel';
 import Meta from './Meta';
 import Comments from '../Comments';
 
+import { likePhoto } from '../../graphql/mutation';
+
 const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
 
 class PhotoCard extends Component {
   state = {};
+
+  onLikePress = async () => {
+    try {
+      const res = await this.props.likePhotoMutation({
+        variables: { photoId: this.props.id }
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
 
   render() {
     const { imageUrl, caption } = this.props;
@@ -22,7 +35,7 @@ class PhotoCard extends Component {
 
         <Image style={{ flex: 1 }} source={{ uri: imageUrl }} />
 
-        <ActionPanel />
+        <ActionPanel onLikePress={this.onLikePress} />
 
         <Meta caption={caption} />
 
@@ -70,4 +83,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PhotoCard;
+export default graphql(likePhoto, { name: 'likePhotoMutation' })(PhotoCard);
