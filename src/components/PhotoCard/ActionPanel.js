@@ -8,6 +8,14 @@ import { makeHitSlop } from '../../utils';
 
 class ActionPanel extends Component {
   state = {};
+
+  getLikeIcon = () => {
+    if (this.props.isLiked) {
+      return <Ionicons name="ios-heart" size={30} color="crimson" />;
+    } 
+      return <Ionicons name="ios-heart-outline" size={30} />;
+  };
+
   render() {
     return (
       <View style={styles.root}>
@@ -18,7 +26,7 @@ class ActionPanel extends Component {
             feedback="opacity"
             style={styles.actionBtn}
           >
-            <Ionicons name="ios-heart-outline" size={30} />
+            {this.getLikeIcon()}
           </Touchable>
           <Touchable hitSlop={makeHitSlop(5)} feedback="opacity" style={styles.actionBtn}>
             <EvilIcons name="comment" size={35} />

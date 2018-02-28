@@ -27,15 +27,14 @@ class PhotoCard extends Component {
   };
 
   render() {
-    const { imageUrl, caption } = this.props;
-
+    const { imageUrl, caption, viewerLike } = this.props;
     return (
       <View style={styles.wrapper}>
         <Header />
 
         <Image style={{ flex: 1 }} source={{ uri: imageUrl }} />
 
-        <ActionPanel onLikePress={this.onLikePress} />
+        <ActionPanel onLikePress={this.onLikePress} isLiked={viewerLike} />
 
         <Meta caption={caption} />
 

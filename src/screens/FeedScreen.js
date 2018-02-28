@@ -52,6 +52,7 @@ const GET_PHOTOS_QUERY = gql`
       caption
       imageUrl
       insertedAt
+      viewerLike
     }
   }
 `;
