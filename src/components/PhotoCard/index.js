@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import Touchable from '@appandflow/touchable';
 import { human, iOSColors } from 'react-native-typography';
 import { graphql } from 'react-apollo';
+import { defaultDataIdFromObject } from 'apollo-cache-inmemory';
 
 import Header from './Header';
 import ActionPanel from './ActionPanel';
 import Meta from './Meta';
 import Comments from '../Comments';
 
-import { likePhoto } from '../../graphql/mutation';
+import { likePhotoMutation } from '../../graphql/mutation';
+import { FeedPhotoFragment } from '../../graphql/fragments';
 
 const uri = 'https://nerdist.com/wp-content/uploads/2017/09/robert-baratheon-970x545.jpg';
 
@@ -17,13 +19,7 @@ class PhotoCard extends Component {
   state = {};
 
   onLikePress = async () => {
-    try {
-      const res = await this.props.likePhotoMutation({
-        variables: { photoId: this.props.id }
-      });
-    } catch (error) {
-      throw error;
-    }
+    this.props.onLikePhotoMutation();
   };
 
   render() {
@@ -82,4 +78,31 @@ const styles = StyleSheet.create({
   }
 });
 
-export default graphql(likePhoto, { name: 'likePhotoMutation' })(PhotoCard);
+export default graphql(likePhotoMutation, {
+  props: ({ mutate, ownProps }) => ({
+    onLikePhotoMutation: () =>
+      mutate({
+        variables: { photoId: ownProps.id },
+        update: (store, { data: { likePhoto } }) => {
+          const id = defaultDataIdFromObject({
+            __typename: 'Photo',
+            id: ownProps.id
+          });
+
+          const photo = store.readFragment({
+            id,
+            fragment: FeedPhotoFragment
+          });
+
+          store.writeFragment({
+            id,
+            fragment: FeedPhotoFragment,
+            data: {
+              ...photo,
+              viewerLike: likePhoto
+            }
+          });
+        }
+      })
+  })
+})(PhotoCard);
